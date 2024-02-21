@@ -49,8 +49,8 @@ requirements:
     - tectonic
     - typeguard
     - dataclasses-json
-    - pdftopng
     - jsonpickle
+    - pdf2image
 
 test:
   imports:
