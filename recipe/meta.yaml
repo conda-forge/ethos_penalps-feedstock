@@ -4,13 +4,13 @@
 package:
   name: {{ name|lower }}
   version: {{ version }}
-
 source:
   url: https://github.com/FZJ-IEK3-VSA/ETHOS_PeNALPS/archive/refs/tags/{{ version }}.tar.gz
   sha256: 2ca9f756e17ab5aaeba7252803b5b30362950e7f6e0b2a05b558923f99f2c222
 
+
 build:
-  number: 0
+  number: 1
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
 
