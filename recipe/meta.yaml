@@ -51,6 +51,7 @@ requirements:
     - dataclasses-json
     - jsonpickle
     - pdf2image
+    - pyarrow!=3.10.1=py310hd0bb7c2_57_cpu
 
 test:
   imports:
