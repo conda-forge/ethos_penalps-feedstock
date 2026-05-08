@@ -1,0 +1,83 @@
+context:
+  name: ethos_penalps
+  version: "1.1.0"
+  python_min: "3.10"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/FZJ-IEK3-VSA/ETHOS_PeNALPS/archive/refs/tags/${{ version }}.tar.gz
+  sha256: 13908ef7e4eb009b32592f5857d2442537d5310028d0bfae0a52694cc9bbcf20
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools >64.0.0
+    - wheel
+  run:
+    - python >=${{ python_min }}
+    - pandas
+    - jupyter-book
+    - sphinx-autoapi
+    - graphviz
+    - python-graphviz
+    - numpy >1.23.5
+    - sqlalchemy <2.0
+    - plotly
+    - networkx
+    - openpyxl
+    - xlsxwriter
+    - prospector
+    - matplotlib-base
+    - pytest >7.0
+    - pip >=21.3
+    - black
+    - pint
+    - proplot
+    - datapane
+    - svglib
+    - cloudpickle
+    - seaborn
+    - workalendar
+    - datetimerange
+    - tectonic
+    - typeguard
+    - dataclasses-json
+    - jsonpickle
+    - pdf2image
+
+tests:
+  - python:
+      imports:
+        - ethos_penalps
+        - pandas
+      python_version: ${{ python_min }}.*
+  - script:
+      - pytest
+    requirements:
+      run:
+        - pytest
+        - python ${{ python_min }}.*
+    files:
+      source:
+        - .
+
+about:
+  homepage: https://github.com/FZJ-IEK3-VSA/ETHOS_PeNALPS
+  summary: "A package to simulate energy load profiles of industrial manufacturing processes"
+  license: AGPL-3.0-only
+  license_file: LICENSE.txt
+  documentation: http://ethospenalps.readthedocs.io/
+  repository: https://github.com/FZJ-IEK3-VSA/ETHOS_PeNALPS
+
+extra:
+  recipe-maintainers:
+    - julian-belina
