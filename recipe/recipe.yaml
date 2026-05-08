@@ -20,7 +20,7 @@ requirements:
   host:
     - python ${{ python_min }}.*
     - pip
-    - setuptools >64.0.0
+    - setuptools >64.0.0,<81
     - wheel
   run:
     - python >=${{ python_min }}
