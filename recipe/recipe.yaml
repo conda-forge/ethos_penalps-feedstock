@@ -61,10 +61,11 @@ tests:
         - pandas
       python_version: ${{ python_min }}.*
   - script:
-      - pytest
+      - pytest -n auto
     requirements:
       run:
         - pytest
+        - pytest-xdist
         - python ${{ python_min }}.*
     files:
       source:
