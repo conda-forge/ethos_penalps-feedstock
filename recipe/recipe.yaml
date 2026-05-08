@@ -58,7 +58,7 @@ tests:
         - pandas
       python_version: ${{ python_min }}.*
   - script:
-      - pytest -n auto
+      - pytest -n auto -vv
     requirements:
       run:
         - pytest

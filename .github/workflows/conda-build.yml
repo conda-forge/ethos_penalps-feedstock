@@ -23,7 +23,7 @@ jobs:
       matrix:
         include:
           - CONFIG: linux_64_
-            STORE_BUILD_ARTIFACTS: False
+            STORE_BUILD_ARTIFACTS: True
             UPLOAD_PACKAGES: True
             os: ubuntu
             runs_on: ['ubuntu-latest']
@@ -109,3 +109,16 @@ jobs:
         BINSTAR_TOKEN: ${{ secrets.BINSTAR_TOKEN }}
         FEEDSTOCK_TOKEN: ${{ secrets.FEEDSTOCK_TOKEN }}
         STAGING_BINSTAR_TOKEN: ${{ secrets.STAGING_BINSTAR_TOKEN }}
+
+    - name: Upload build logs on failure
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-logs-${{ matrix.CONFIG }}
+        path: |
+          build_artifacts/**/conda_build.log
+          build_artifacts/**/conda_build.sh
+          build_artifacts/**/build_env_setup.sh
+          build_artifacts/test/**
+        if-no-files-found: warn
+        retention-days: 7
